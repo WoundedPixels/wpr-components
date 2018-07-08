@@ -1,27 +1,39 @@
-# Based on React component boilerplate
+## Installation
 
-https://github.com/markusenglund/react-npm-component-starter
+`npm i --save wpr-zoomable-svg-group`
 
-## Getting started
+```
+import ZoomableGroup from 'wpr-zoomable-svg-group';
 
-Follow these steps to get started developing:
+...
+render() {
+  return (
+    <ZoomableGroup width="500" height="250" maxZoom="20">
+      <g minScale="4" maxScale="8">
+        <circle cx="247" cy="122" r="4" stroke="red" fill="none" strokeWidth="0.9" />
+      </g>
+    </ZoomableGroup>
+  )
+}
+...
+```
 
-- `npm install`
-- `npm run dev` to transpile both the lib and docs folder in watch mode and serve the docs page for you.
-- Go to http://127.0.0.1:8000 to see the component in action. Whenever you change the code in either src/lib or src/docs, the page will automatically update.
+## Use
 
-## Publish
+A ZoomableGroup can show different children based on the zoom level. It resolves into a svg with the specified children. Pan and zoom work as expected in the world of D3.js.  
+Parameters:
 
-When you have completed development and want to publish to npm:
+- width: width of the resulting svg
+- height: height of the resulting svg
+- maxZoom: maximum zoom to be applied as a transform on the children of the resulting svg. Defaults to 200.
 
-- `npm publish`
-- Go to npmjs.com/package/wpr-zoomable-group/ to confirm that it has been published.
+Each immediate child of a ZoomableGroup should be a SVG group ( g ) or something that resolves to an SVG group. Children can specify a minScale and maxScale property. When rendering children, the ZoomableGroup filters out any whose minScale and maxScale do not contain the current scale. To be precise, it includes children if minScale <= scale < maxScale.
+minScale defaults to zero. maxScale defaults to infinity.
 
-## Demo Page
+This allows a ZoomableGroup to show a different level of detail as the user zooms in. For an example with a map, see [colleges.scrylr.com](https://colleges.scrylr.com). As you zoom in the states give way to counties.
 
-Host demo on GitHub Pages:
+The minScale, maxScale and current scale are passed as props to each surviving child. They are free to ignore them or use them to do useful things, like thin out lines as the scale goes up. In the first example below, the ThinCircle component uses the scale to keep the stroke width consistent.
 
-- `npm run docs:prod` - Make a production bundle of the demo app.
-- Commit your changes to git and push to your GitHub repository.
-- On your GitHub repo page, click the **settings** tab and scroll down to the **GitHub Pages** heading. Pick `master branch /docs folder` in the **source** dropdown, And BOOM, your demo page is already live on the internet for free.
-- Note: Sometimes it might take about an hour for the page to actually start hosting. Adding /index.html after the url works instantly for whatever reason.
+### Credits
+
+Loosely based on https://github.com/markusenglund/react-npm-component-starter

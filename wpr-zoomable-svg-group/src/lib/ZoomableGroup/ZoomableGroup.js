@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import * as d3 from 'd3';
+import { zoom } from 'd3-zoom';
+import { select, event } from 'd3-selection';
 
 class ZoomableGroup extends Component {
   constructor(props) {
@@ -19,18 +20,17 @@ class ZoomableGroup extends Component {
   init() {
     const maxZoom = this.props.maxZoom ? parseInt(this.props.maxZoom, 10) : 200;
 
-    const zoom = d3
-      .zoom()
+    const zoomit = zoom()
       .scaleExtent([1, maxZoom])
       .on('zoom', this.zoomed);
-    const node = d3.select(this.node);
-    node.call(zoom);
+    const node = select(this.node);
+    node.call(zoomit);
 
     this.viewG = node.select('g');
   }
 
   zoomed() {
-    const { transform } = d3.event;
+    const { transform } = event;
     this.viewG.attr('transform', transform);
     this.setState({ transform: transform });
   }

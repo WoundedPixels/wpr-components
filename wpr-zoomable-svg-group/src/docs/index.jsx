@@ -37,27 +37,27 @@ function Demo() {
       They are free to ignore them or maybe do useful things, like thin out lines as the scale goes up.
       In the first example below, the ThinCircle component uses the scale to keep the stroke width consistent.</div>
 
-      <h2>Blue circle splits into 2 red circles then 4 green circles</h2>
+      <h2>Blue circle splits into 2 red circles then 4 green circles. Blue line stays thin.</h2>
       <ZoomableGroup width="1000" height="500" maxZoom="40">
-        <ThinCircle minScale="0" maxScale="8" cx="500" cy="250" r="8" stroke="blue" fill="none" stroke-width="2" />
+        <ThinCircle minScale="0" maxScale="8" cx="500" cy="250" r="8" stroke="blue" fill="none" strokeWidth="1" />
         <g minScale="8" maxScale="16">
-          <circle cx="495" cy="245" r="8" stroke="red" fill="none" stroke-width="0.9" />
-          <circle cx="505" cy="255" r="8" stroke="red" fill="none" stroke-width="0.9" />
+          <circle cx="495" cy="245" r="8" stroke="red" fill="none" strokeWidth="0.9" />
+          <circle cx="505" cy="255" r="8" stroke="red" fill="none" strokeWidth="0.9" />
         </g>
         <g minScale="16" maxScale="41">
-          <circle cx="495" cy="245" r="8" stroke="green" fill="none" stroke-width="0.8" />
-          <circle cx="495" cy="255" r="8" stroke="green" fill="none" stroke-width="0.8" />
-          <circle cx="505" cy="245" r="8" stroke="green" fill="none" stroke-width="0.8" />
-          <circle cx="505" cy="255" r="8" stroke="green" fill="none" stroke-width="0.8" />
+          <circle cx="495" cy="245" r="8" stroke="green" fill="none" strokeWidth="0.8" />
+          <circle cx="495" cy="255" r="8" stroke="green" fill="none" strokeWidth="0.8" />
+          <circle cx="505" cy="245" r="8" stroke="green" fill="none" strokeWidth="0.8" />
+          <circle cx="505" cy="255" r="8" stroke="green" fill="none" strokeWidth="0.8" />
         </g>
       </ZoomableGroup>
 
       <h2>Blue circle stays. 2 red circles come and go.</h2>
       <ZoomableGroup width="1000" height="500" maxZoom="50">
-        <ThinCircle cx="500" cy="250" r="8" stroke="blue" fill="none" stroke-width="2" />
+        <ThinCircle cx="500" cy="250" r="8" stroke="blue" fill="none" strokeWidth="1" />
         <g minScale="8" maxScale="16">
-          <circle cx="495" cy="245" r="8" stroke="red" fill="none" stroke-width="0.9" />
-          <circle cx="505" cy="255" r="8" stroke="red" fill="none" stroke-width="0.9" />
+          <circle cx="495" cy="245" r="8" stroke="red" fill="none" strokeWidth="0.9" />
+          <circle cx="505" cy="255" r="8" stroke="red" fill="none" strokeWidth="0.9" />
         </g>
       </ZoomableGroup>
       <ThinCircle/>
